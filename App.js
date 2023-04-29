@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Image } from 'react-native';
 import Header from './assets/components/Header';
 import SignUpPage from './screens/SignUpPage';
+import COLORS from './assets/colors/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,9 +28,8 @@ export default function App() {
        <Stack.Screen
         name="Home"
         component={HomePage}
-        options={{headerStyle: {backgroundColor: '#000',}, 
+        options={{headerStyle: {backgroundColor: COLORS.white,}, 
                   headerBackTitleVisible: false,
-                  headerBackVisible: false,
                   headerTitle: () => Header(),
                 }}
        />
