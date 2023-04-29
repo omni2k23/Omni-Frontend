@@ -3,12 +3,12 @@ import {View, StyleSheet, TouchableOpacity, Text, Image} from 'react-native';
 import { Video } from 'expo-av';
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font';
-import storesGlob from '/Users/dustinjasmin/AwesomeProject/assets/StoresGlob.mp4'
+import storesGlob from '../assets/StoresGlob.mp4'
 import * as SplashScreen from 'expo-splash-screen';
 
 export default function LoginPage({ navigation }) {
   const [fontsLoaded] = useFonts({
-    'Hacked-Font': require('/Users/dustinjasmin/AwesomeProject/assets/fonts/HackedFont/Hacked-KerX.ttf'),
+    'Hacked-Font': require('../assets/fonts/HackedFont/Hacked-KerX.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -20,9 +20,6 @@ export default function LoginPage({ navigation }) {
   if (!fontsLoaded) {
     return null;
   }
-
-
-  
     return (
         <View style={styles.container}>
           <StatusBar style="light" />
@@ -35,17 +32,17 @@ export default function LoginPage({ navigation }) {
           />
           <Image
             style={styles.omniLogo}
-            source={require('/Users/dustinjasmin/AwesomeProject/assets/OmniLogo.png')}
+            source={require('../assets/OmniLogo.png')}
             />
           <TouchableOpacity
             style={styles.signUpScreenButton}
             //onPress={() => navigate('HomeScreen')}
             underlayColor='#fff'
-            onPress={() => navigation.navigate('Authentication')}
+            onPress={() => navigation.navigate('SignUp')}
             >
             <Text style={styles.signUpText}>Sign up</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
             <Text style={styles.loginText}>Log In</Text>
           </TouchableOpacity>
           

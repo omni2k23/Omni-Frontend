@@ -2,12 +2,12 @@ import { React, useCallback } from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Video } from 'expo-av';
-import ps5Video from '/Users/dustinjasmin/AwesomeProject/assets/ps5video.mp4'
+import ps5Video from '../assets/ps5video.mp4'
 import { useFonts } from 'expo-font';
 
 export default function HomePage({ navigation }) {
   const [fontsLoaded] = useFonts({
-    'Source_Code_Pro_SemiBold': require('/Users/dustinjasmin/AwesomeProject/assets/fonts/Source_Code_Pro/static/SourceCodePro-SemiBold.ttf'),
+    'Source_Code_Pro_SemiBold': require('../assets/fonts/Source_Code_Pro/static/SourceCodePro-SemiBold.ttf'),
 
   });
 
@@ -34,23 +34,23 @@ export default function HomePage({ navigation }) {
           </View>
           <Image 
             style={styles.sonyLogo}
-            source={require('/Users/dustinjasmin/AwesomeProject/assets/SonyLogo.png')}
+            source={require('../assets/SonyLogo.png')}
           />
           <Image 
             style={styles.sonyPlus}
-            source={require('/Users/dustinjasmin/AwesomeProject/assets/SonyPlus.png')}
+            source={require('../assets/SonyPlus.png')}
           />
           <Image 
             style={styles.noLimits}
-            source={require('/Users/dustinjasmin/AwesomeProject/assets/NoLimits.png')}
+            source={require('../assets/NoLimits.png')}
           />
           <Image 
             style={styles.Unleash}
-            source={require('/Users/dustinjasmin/AwesomeProject/assets/Unleash.png')}
+            source={require('../assets/Unleash.png')}
           />
           <TouchableOpacity> 
             <Image style={styles.shopButton}
-                   source={require('/Users/dustinjasmin/AwesomeProject/assets/ShopButton.png')} 
+                   source={require('../assets/ShopButton.png')} 
           />
           </TouchableOpacity>
           <Text style={styles.homeText}>All Stores</Text>

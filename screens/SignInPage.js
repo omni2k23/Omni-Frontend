@@ -9,16 +9,14 @@ import {
   Alert,
 } from 'react-native';
 
-import COLORS from '/Users/dustinjasmin/AwesomeProject/assets/colors/colors.js';
-import Button from '/Users/dustinjasmin/AwesomeProject/assets/components/Button.js';
-import Input from '/Users/dustinjasmin/AwesomeProject/assets/components/Input.js';
-import Loader from '/Users/dustinjasmin/AwesomeProject/assets/components/Loader.js';
+import COLORS from '../assets/colors/colors.js';
+import Button from '../assets/components/Button.js';
+import Input from '../assets/components/Input.js';
+import Loader from '../assets/components/Loader.js';
 
-const AuthenticationPage = ({navigation}) => {
+const SignInPage = ({navigation}) => {
   const [inputs, setInputs] = React.useState({
     email: '',
-    fullname: '',
-    phone: '',
     password: '',
   });
   const [errors, setErrors] = React.useState({});
@@ -33,16 +31,6 @@ const AuthenticationPage = ({navigation}) => {
       isValid = false;
     } else if (!inputs.email.match(/\S+@\S+\.\S+/)) {
       handleError('Please input a valid email', 'email');
-      isValid = false;
-    }
-
-    if (!inputs.fullname) {
-      handleError('Please input fullname', 'fullname');
-      isValid = false;
-    }
-
-    if (!inputs.phone) {
-      handleError('Please input phone number', 'phone');
       isValid = false;
     }
 
@@ -98,25 +86,6 @@ const AuthenticationPage = ({navigation}) => {
             placeholder="Enter your email address"
             error={errors.email}
           />
-
-          <Input
-            onChangeText={text => handleOnchange(text, 'fullname')}
-            onFocus={() => handleError(null, 'fullname')}
-            iconName="account-outline"
-            label="Full Name"
-            placeholder="Enter your full name"
-            error={errors.fullname}
-          />
-
-          <Input
-            keyboardType="numeric"
-            onChangeText={text => handleOnchange(text, 'phone')}
-            onFocus={() => handleError(null, 'phone')}
-            iconName="phone-outline"
-            label="Phone Number"
-            placeholder="Enter your phone no"
-            error={errors.phone}
-          />
           <Input
             onChangeText={text => handleOnchange(text, 'password')}
             onFocus={() => handleError(null, 'password')}
@@ -126,16 +95,16 @@ const AuthenticationPage = ({navigation}) => {
             error={errors.password}
             password
           />
-          <Button title="Register" onPress={validate} />
+          <Button title="Login" onPress={validate} />
           <Text
             onPress={() => navigation.navigate('Home')}
             style={{
-              color: COLORS.black,
+              color: COLORS.white,
               fontWeight: 'bold',
               textAlign: 'center',
               fontSize: 16,
             }}>
-            Already have account ?Login
+            Don't have an account? Click Here
           </Text>
         </View>
       </ScrollView>
@@ -143,4 +112,4 @@ const AuthenticationPage = ({navigation}) => {
   );
 };
 
-export default AuthenticationPage;
+export default SignInPage;

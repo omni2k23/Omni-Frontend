@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
-import COLORS from '/Users/dustinjasmin/AwesomeProject/assets/colors/colors.js';
+import COLORS from '../colors/colors.js';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Input = ({
   label,
