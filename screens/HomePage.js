@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Video } from 'expo-av';
 import ps5Video from '../assets/ps5video.mp4'
 import { useFonts } from 'expo-font';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function HomePage({ navigation }) {
   const [fontsLoaded] = useFonts({
@@ -23,16 +24,15 @@ export default function HomePage({ navigation }) {
     return (
         <View style={styles.container}>
           <StatusBar style="light" />
-          <View style={styles.top}>
-            <Video 
+          <ScrollView >
+          <Video 
               style={styles.ps5vid}
               source={ps5Video}
               shouldPlay={true}
               autoplay={true}
               isLooping={false}
             />
-          </View>
-          <Image 
+           <Image 
             style={styles.sonyLogo}
             source={require('../assets/SonyLogo.png')}
           />
@@ -54,6 +54,51 @@ export default function HomePage({ navigation }) {
           />
           </TouchableOpacity>
           <Text style={styles.homeText}>All Stores</Text>
+          </ScrollView>
+          <View style={styles.containerTwo}>
+          <ScrollView horizontal={true}  >
+          <Image 
+            style={styles.amazon}
+            source={require('../assets/amazon.png')}
+          />
+          <Image 
+            style={styles.bestBuy}
+            source={require('../assets/bestbuy.png')}
+          />
+          <Image 
+            style={styles.microsoft}
+            source={require('../assets/microsoft.png')}
+          />
+          <Image 
+            style={styles.walmart}
+            source={require('../assets/walmart.png')}
+          />
+          </ScrollView>
+          </View>
+          <View style={styles.containerThree}>
+          <ScrollView horizontal={true}  >
+            <TouchableOpacity>
+            <Image 
+            style={styles.amazon}
+            source={require('../assets/sonyShop.png')}
+          />
+            </TouchableOpacity>
+         
+          <Image 
+            style={styles.bestBuy}
+            source={require('../assets/target.png')}
+          />
+          <Image 
+            style={styles.microsoft}
+            source={require('../assets/microsoft.png')}
+          />
+          <Image 
+            style={styles.walmart}
+            source={require('../assets/walmart.png')}
+          />
+          </ScrollView>
+          </View>
+            
         </ View>
 
         
@@ -64,58 +109,90 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#000",
-      alignItems: "center",
-      justifyContent: "center",
+      flexDirection: 'column',
     },
-    top: {
+    containerTwo: {
       flex: 1,
-      justifyContent: 'flex-start',
-      marginTop: 36
+      flexDirection: "row",
+      backgroundColor: "#000",
+      alignContent: "flex-end",
+      marginTop: -340,
+      justifyContent: "space-evenly"
     },
+    containerThree: {
+      flex: 1,
+      flexDirection: "row",
+      backgroundColor: "#000",
+  
+    },
+    
     loginText: {
         color: '#FFFFFF',
         fontFamily: 'Hacked-Font',
         marginTop: 15
     },
       ps5vid: {
-        flex: 1,
-        height: '200%',
-        width: '300%',
+        flexWrap: "wrap",
+        height: 400,
+        width: 400,
+        top: -100,
+        
         
       },
       sonyLogo: {
-        position: 'absolute',
+        flexWrap: "wrap",
         width: 158.01,
         height: 27.74,
-        left: 10,
-        top: 175,
+        top: -255
+       
       },
       sonyPlus: {
-        position: 'absolute',
-        left: 178,
-        top: 169,
+        flexWrap: "wrap",
+        top: -295,
+        left: 160
       },
       noLimits: {
-        position: 'absolute',
-        left: 10,
-        top: 220,
+      flexWrap: "wrap",
+      top: -245,
        
 
       },
       Unleash: {
-        position: 'absolute',
-        left: 10,
-        top: 257,
+        flexWrap: "wrap",
+        top: -235,
       },
       shopButton: {
-        top: 25
+        flexWrap: "wrap",
+        alignSelf: 'center',
+        top: -225,
       },
       homeText: {
         color: "#fff",
         fontSize: 20,
         fontFamily: 'Source_Code_Pro_SemiBold',
-        top: 30,
-        right: 115
+        top: -215
+      },
+    
+
+      amazon: {
+        flexWrap: "wrap",
+        marginRight: 10, 
+      },
+
+      bestbuy: {
+        flexWrap: "wrap",
+        marginRight: 10,
+      },
+      
+      microsoft: {
+        flexWrap: "wrap",
+        marginLeft: 10,
+      },
+
+      walmart: {
+        flexWrap: "wrap",
+        marginLeft: 10,
       }
+      
 
   });
