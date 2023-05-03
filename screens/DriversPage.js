@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, useWindowDimensions, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabView, TabBar } from 'react-native-tab-view';
 import { Table, Row } from 'react-native-table-component';
 
 const FirstRoute = ({ posts }) => (
@@ -82,7 +82,7 @@ export default function DriversPage({ navigation }) {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/Users/dustinjasmin/AwesomeProject/assets/mockdata.json');
+      const response = await fetch('/Users/dustinjasmin/AwesomeProject/assets/orderdata.json');
       const data = await response.json();
       setPosts(data);
     } catch (error) {
