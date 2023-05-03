@@ -28,7 +28,7 @@ const handleLogin = (email, password, handleUserType, handleAuthenticatedUser, n
       const userId = data.user_id;
       handleUserType(accountType);
       handleAuthenticatedUser(userId);
-      navigation.navigate('SonyStorePage')
+      navigation.navigate('Home')
       setFailMsg('hi')
     })
     .catch(error => {
