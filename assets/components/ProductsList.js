@@ -11,7 +11,7 @@ const ProductsList = ({ handleAddToCart, handleUserType }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get(`http://192.168.1.220:8000/search/Walmart?lat=40.90567177769295&lng=-73.84199492679834`)
+    axios.get(`http://10.18.145.211:8001/search/Walmart?lat=40.90567177769295&lng=-73.84199492679834`)
       .then(response => {
         const productsWithIds = response.data.map((product, index) => ({...product, id: index + 1}));
         setProducts(productsWithIds);

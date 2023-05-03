@@ -4,7 +4,7 @@ import CartItem from '../assets/components/CartItem';
 import SubmitOrderButton from '../assets/components/SubmitOrderButton';
 import CheckoutFooter from '../assets/components/CheckoutFooter';
 
-export default function CheckoutPage({ cart, handleRemoveFromCart }) {
+export default function CheckoutPage({ cart, handleRemoveFromCart, clearCart}) {
     const [cartTotal, setCartTotal] = useState(0);
 
     // Calculate total quantity of items in cart
@@ -32,7 +32,7 @@ export default function CheckoutPage({ cart, handleRemoveFromCart }) {
                 ))}
                 <View style={styles.scrollEnd}></View>
             </ScrollView>
-            <CheckoutFooter cartTotal={cartTotal} />
+            <CheckoutFooter cartTotal={cartTotal} clearCart={clearCart} />
         </View>
     );
 }

@@ -29,6 +29,7 @@ export default function LoginPage({ navigation }) {
             shouldPlay={true}
             autoplay={true}
             isLooping={true}
+            resizeMode='cover'
           />
           <Image
             style={styles.omniLogo}

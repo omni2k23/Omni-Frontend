@@ -6,7 +6,7 @@ import COLORS from '../assets/colors/colors';
 export default function UserOrdersPage({}) {
     return (
         <View style={styles.container}>
-            <OrderDetails orderId={1} totalCost={12} onPress={null}/>
+            <OrderDetails orderId={1} totalCost={138} onPress={null}/>
         </View>
     );
 };

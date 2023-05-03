@@ -1,12 +1,12 @@
 import { View, StyleSheet, Image, TouchableOpacity, Text, KeyboardAvoidingView } from 'react-native';
 import SubmitOrderButton from './SubmitOrderButton';
-const CheckoutFooter = ({ cartTotal }) => {
+const CheckoutFooter = ({cartTotal, clearCart }) => {
     return (
         <View style={styles.footer}>
             <View style={styles.totalContainer}>
                 <Text style={styles.totalText}>Total: {cartTotal.toFixed(2)}</Text>
             </View>
-            <SubmitOrderButton/>
+            <SubmitOrderButton onPress={clearCart}/>
         </View>
     );
 }

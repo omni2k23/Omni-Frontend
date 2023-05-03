@@ -48,11 +48,6 @@ export default function HomePage({ navigation }) {
             style={styles.Unleash}
             source={require('../assets/Unleash.png')}
           />
-          <TouchableOpacity> 
-            <Image style={styles.shopButton}
-                   source={require('../assets/ShopButton.png')} 
-          />
-          </TouchableOpacity>
           <Text style={styles.homeText}>All Stores</Text>
           </ScrollView>
           <View style={styles.containerTwo}>
@@ -77,7 +72,7 @@ export default function HomePage({ navigation }) {
           </View>
           <View style={styles.containerThree}>
           <ScrollView horizontal={true}  >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("SonyStorePage")}>
             <Image 
             style={styles.amazon}
             source={require('../assets/sonyShop.png')}

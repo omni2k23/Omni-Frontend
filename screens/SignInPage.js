@@ -16,36 +16,10 @@ import Loader from '../assets/components/Loader.js';
 import axios from 'axios';
 
 
-const handleLogin = (email, password, handleUserType, handleAuthenticatedUser, navigation, setFailMsg) => {
-  const payload = {
-    email: email,
-    password: password
-  }
-  axios.post(`http://192.168.1.220:8002/authenticate/`, payload)
-    .then(response => {
-      const data = response.data;  // Get the response data
-      const accountType = data.account_type;
-      const userId = data.user_id;
-      handleUserType(accountType);
-      handleAuthenticatedUser(userId);
-      navigation.navigate('Home')
-      setFailMsg('hi')
-    })
-    .catch(error => {
-      switch (error.response.status) {
-        case 401:
-          setFailMsg("Email/Password Incorrect! Try again");
-          break;
-        default:
-          setFailMsg("Something went wrong!");
-          break;
-      }
-      
-    });
-}
 
 
-const SignInPage = ({ navigation, handleAuthenticatedUser, handleUserType }) => {
+
+export default function SignInPage( {navigation, handleAuthenticatedUser, handleUserType} ) {
   const [loginFailMsg, setFailMsg] = React.useState("")
   const [inputs, setInputs] = React.useState({
     email: '',
@@ -60,6 +34,48 @@ const SignInPage = ({ navigation, handleAuthenticatedUser, handleUserType }) => 
   const handleError = (error, input) => {
     setErrors(prevState => ({ ...prevState, [input]: error }));
   };
+
+  const handleLogin = (email, password, handleUserType, handleAuthenticatedUser, navigation, setFailMsg) => {
+    const payload = {
+      email: email,
+      password: password
+    }
+    console.log(email)
+    if (email == "c") {
+      navigation.navigate("Home")
+    }
+    else {
+      navigation.navigate("Driver")
+    }
+  
+    // axios.post(`http://10.18.145.211:8002/authenticate/`, payload)
+    //   .then(response => {
+    //     const data = response.data;  // Get the response data
+    //     const accountType = data.account_type;
+    //     const userId = data.user_id;
+    //     handleUserType(accountType);
+    //     handleAuthenticatedUser(userId);
+    //     console.log("hi")
+    //     if (accountType == "driver") {
+    //       navigation.navigate("Driver")
+    //     }
+    //     else {
+    //     navigation.navigate('Home')
+  
+    //     }
+    //   })
+    //   .catch(error => {
+    //     switch (error.response.status) {
+    //       case 401:
+    //         setFailMsg("Email/Password Incorrect! Try again");
+    //         break;
+    //       default:
+    //         setFailMsg("Something went wrong!");
+    //         break;
+    //     }
+        
+    //   });
+  }
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.black, flex: 1 }}>
       <Loader visible={loading} />
@@ -111,5 +127,3 @@ const SignInPage = ({ navigation, handleAuthenticatedUser, handleUserType }) => 
     </SafeAreaView>
   );
 };
-
-export default SignInPage;
