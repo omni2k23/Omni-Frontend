@@ -13,8 +13,40 @@ import COLORS from '../assets/colors/colors.js';
 import Button from '../assets/components/Button.js';
 import Input from '../assets/components/Input.js';
 import Loader from '../assets/components/Loader.js';
+import axios from 'axios';
 
-const SignInPage = ({navigation}) => {
+
+const handleLogin = (email, password, handleUserType, handleAuthenticatedUser, navigation, setFailMsg) => {
+  const payload = {
+    email: email,
+    password: password
+  }
+  axios.post(`http://192.168.1.220:8002/authenticate/`, payload)
+    .then(response => {
+      const data = response.data;  // Get the response data
+      const accountType = data.account_type;
+      const userId = data.user_id;
+      handleUserType(accountType);
+      handleAuthenticatedUser(userId);
+      navigation.navigate('SonyStorePage')
+      setFailMsg('hi')
+    })
+    .catch(error => {
+      switch (error.response.status) {
+        case 401:
+          setFailMsg("Email/Password Incorrect! Try again");
+          break;
+        default:
+          setFailMsg("Something went wrong!");
+          break;
+      }
+      
+    });
+}
+
+
+const SignInPage = ({ navigation, handleAuthenticatedUser, handleUserType }) => {
+  const [loginFailMsg, setFailMsg] = React.useState("")
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
@@ -22,62 +54,24 @@ const SignInPage = ({navigation}) => {
   const [errors, setErrors] = React.useState({});
   const [loading, setLoading] = React.useState(false);
 
-  const validate = () => {
-    Keyboard.dismiss();
-    let isValid = true;
-
-    if (!inputs.email) {
-      handleError('Please input email', 'email');
-      isValid = false;
-    } else if (!inputs.email.match(/\S+@\S+\.\S+/)) {
-      handleError('Please input a valid email', 'email');
-      isValid = false;
-    }
-
-    if (!inputs.password) {
-      handleError('Please input password', 'password');
-      isValid = false;
-    } else if (inputs.password.length < 5) {
-      handleError('Min password length of 5', 'password');
-      isValid = false;
-    }
-
-    if (isValid) {
-      register();
-    }
-  };
-
-  const register = () => {
-    setLoading(true);
-    setTimeout(() => {
-      try {
-        setLoading(false);
-        AsyncStorage.setItem('userData', JSON.stringify(inputs));
-        navigation.navigate('Home');
-      } catch (error) {
-        Alert.alert('Error', 'Something went wrong');
-      }
-    }, 3000);
-  };
-
   const handleOnchange = (text, input) => {
-    setInputs(prevState => ({...prevState, [input]: text}));
+    setInputs(prevState => ({ ...prevState, [input]: text }));
   };
   const handleError = (error, input) => {
-    setErrors(prevState => ({...prevState, [input]: error}));
+    setErrors(prevState => ({ ...prevState, [input]: error }));
   };
   return (
-    <SafeAreaView style={{backgroundColor: COLORS.black, flex: 1}}>
+    <SafeAreaView style={{ backgroundColor: COLORS.black, flex: 1 }}>
       <Loader visible={loading} />
       <ScrollView
-        contentContainerStyle={{paddingTop: 50, paddingHorizontal: 20}}>
-        <Text style={{color: COLORS.black, fontSize: 40, fontWeight: 'bold'}}>
-          Register
+        contentContainerStyle={{ paddingTop: 50, paddingHorizontal: 20 }}>
+        <Text style={{ color: COLORS.white, fontSize: 40, fontWeight: 'bold' }}>
+          Sign in
         </Text>
-        <Text style={{color: COLORS.grey, fontSize: 18, marginVertical: 10}}>
-          Enter Your Details to Register
+        <Text style={{ color: COLORS.grey, fontSize: 18, marginVertical: 10 }}>
+          Enter Your Details to Sign in
         </Text>
-        <View style={{marginVertical: 20}}>
+        <View style={{ marginVertical: 20 }}>
           <Input
             onChangeText={text => handleOnchange(text, 'email')}
             onFocus={() => handleError(null, 'email')}
@@ -95,9 +89,9 @@ const SignInPage = ({navigation}) => {
             error={errors.password}
             password
           />
-          <Button title="Login" onPress={validate} />
+          <Button title="Login" onPress={() => handleLogin(inputs.email, inputs.password, handleUserType, handleAuthenticatedUser, navigation, setFailMsg)} />
           <Text
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => null}
             style={{
               color: COLORS.white,
               fontWeight: 'bold',
@@ -106,6 +100,12 @@ const SignInPage = ({navigation}) => {
             }}>
             Don't have an account? Click Here
           </Text>
+          <Text style={{
+              color: COLORS.white,
+              fontWeight: 'bold',
+              textAlign: 'center',
+              fontSize: 16,
+            }}>{loginFailMsg}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
