@@ -107,7 +107,7 @@ export default function SignInPage( {navigation, handleAuthenticatedUser, handle
           />
           <Button title="Login" onPress={() => handleLogin(inputs.email, inputs.password, handleUserType, handleAuthenticatedUser, navigation, setFailMsg)} />
           <Text
-            onPress={() => null}
+            onPress={() => navigation.navigate("SignUp")}
             style={{
               color: COLORS.white,
               fontWeight: 'bold',
